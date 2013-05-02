@@ -16,3 +16,9 @@ tmp
 .yardoc
 _yardoc
 doc/
+
+*.log
+lists/
+Gemfile.lock
+*~
+*.swp
