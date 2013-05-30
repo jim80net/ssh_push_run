@@ -35,7 +35,10 @@ task :password do
 	#$stdout.print prompt unless prompt.nil?
 	$stdout.sync = true
 
-	prompt = "Enter itops password:  "
+	prompt = "Enter username: "
+	$username = java.lang.String.new(System.console().readPassword(prompt));
+
+	prompt = "Enter #{$username} password:  "
 	$password = java.lang.String.new(System.console().readPassword(prompt));
 end
 	
@@ -45,7 +48,7 @@ desc 'do["something"]'
 task :do, :arg1 do |t, args|
 	puts "Doing #{args}"
 	args.each { |k,v | 
-		shell_spawn %Q[bash lists/get_sql.sh | jruby ssh_push_run.rb --user itops --password="#{$password}" --execute "if /usr/lib/nagios/plugins/check_load -r -c 200 -w 200 &>/dev/null; then #{v}; else echo LOAD TOO HIGH; fi"]
+		shell_spawn %Q[bash lists/get_sql.sh | jruby ssh_push_run.rb --user="#{$username}" --password="#{$password}" --execute "if /usr/lib/nagios/plugins/check_load -r -c 200 -w 200 &>/dev/null; then #{v}; else echo LOAD TOO HIGH; fi"]
 	}
 end
 
