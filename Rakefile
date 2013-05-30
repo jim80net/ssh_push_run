@@ -61,12 +61,12 @@ end
 
 desc "Perform a test puppet noop run against every node you know about. No diffs."
 task :puppet_test_nodiff do
-	Rake::Task[:do].invoke("sudo puppet agent --no-daemonize --onetime --verbose --environment test --server pkc-itconfig.ak-networks.com --noop")
+	Rake::Task[:do].invoke("sudo puppet agent --verbose --onetime --ignorecache --no-daemonize --no-splay --no-show_diff --environment test --server pkc-itconfig.ak-networks.com --noop")
 end
 
 desc "Perform a LIVE puppet run against every node you know about. No diffs"
 task :puppet_LIVE_nodiff do
-	Rake::Task[:do].invoke("sudo puppet agent --no-daemonize --onetime --verbose --server pkc-itconfig.ak-networks.com --no-noop")
+	Rake::Task[:do].invoke("sudo puppet agent --verbose --onetime --irnorecache --no-daemonize --no-sply --no-show_diff --server pkc-itconfig.ak-networks.com --no-noop")
 end
 
 desc "audit /etc/resolv.conf "
