@@ -102,6 +102,7 @@ optparse = OptionParser.new { |opts|
 optparse.parse!
 
 unless $options[:executeMe]
+        gg
 	puts $options[:executeMe]
 	print "This is garbage. Tell me what to do!!!\n"
 	puts %x[#{__FILE__} --help]
@@ -177,7 +178,7 @@ def get_the_file(session, fqdn = nil)
 		end # channel.request_pty
 	end #session.open_channel
 	session.loop
-	$log.info "Thread #{Thread.current[:threach_num]}: #{fqdn}: Returned output: #{string}"
+	$log.debug "Thread #{Thread.current[:threach_num]}: #{fqdn}: Returned output: #{string}"
 
 	return string
 
