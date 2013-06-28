@@ -102,7 +102,6 @@ optparse = OptionParser.new { |opts|
 optparse.parse!
 
 unless $options[:executeMe]
-        gg
 	puts $options[:executeMe]
 	print "This is garbage. Tell me what to do!!!\n"
 	puts %x[#{__FILE__} --help]
